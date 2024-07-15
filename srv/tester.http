@@ -1,0 +1,116 @@
+### get service
+http://localhost:4004/odata/v4/CatalogService
+
+### metadata
+http://localhost:4004/odata/v4/CatalogService/$metadata
+
+### get entity
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+
+### get single employee record
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C19787FB
+
+### get total employee count
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/$count
+
+###Create new employee with our data payload - POST
+POST http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+Content-Type: application/json
+ 
+{
+  "nameFirst": "virat",
+  "nameMiddle": "M",
+  "nameLast": "kohli",
+  "nameInitials": null,
+  "sex": "M",
+  "language": "E",
+  "phoneNumber": "+918810504555",
+  "email": "chris.ronaldo@gmail.com",
+  "loginName": "CHRISRL",
+  "Currency_code": "USD",
+  "salaryAmount": 76395,
+  "accountNumber": "32109876",
+  "bankId": "66665555",
+  "bankName": "My Bank of London"
+}
+ 
+ 
+###Get the employee data which was just created
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/db1b5b9f-c49e-413b-9bcb-64db8fa85ebc
+ 
+ 
+###Update employee data - PATCH
+PATCH http://localhost:4004/odata/v4/CatalogService/EmployeeSet/db1b5b9f-c49e-413b-9bcb-64db8fa85ebc
+Content-Type: application/json
+ 
+{
+    "salaryAmount":1000000,
+    "Currency_code": "EUR"
+}
+ 
+###Delete data from DB using Service - DELETE
+DELETE http://localhost:4004/odata/v4/CatalogService/EmployeeSet/db1b5b9f-c49e-413b-9bcb-64db8fa85ebc
+
+### get the data chunk by chunk -- pagination
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$top=5&$skip=5
+
+### get data using filters
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=bankName eq 'My Bank of New York'
+ 
+###Pattern based filtering
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=contains(nameFirst,'Su')
+ 
+###Select particular column data - $select
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$select=nameFirst,nameLast,loginName
+
+###Get the data from CDS view
+http://localhost:4004/odata/v4/CatalogService/Products
+ 
+###Load single product by id
+http://localhost:4004/odata/v4/CatalogService/Products/74867AD200E41EDBA5D8B06B26EBA052
+ 
+###Get me the order where this product was used - lazy loading
+http://localhost:4004/odata/v4/CatalogService/Products/74867AD200E41EDBA5D8B06B26EBA052/To_Items
+ 
+ 
+###Get product and item data together in single call
+http://localhost:4004/odata/v4/CatalogService/Products/74867AD200E41EDBA5D8B06B26EBA052?$expand=To_Items
+
+###Get all PO
+http://localhost:4004/odata/v4/CatalogService/POs
+ 
+###Get Single PO
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC28052
+ 
+###Get PO with its items
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC30052?$expand=Items
+
+###Get Single PO
+POST http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC28052/CatalogService.boost
+Content-Type: application/json
+
+{}
+
+###Get function data for largest order
+http://localhost:4004/odata/v4/CatalogService/largestOrder()
+
+
+###Create new po with our data payload - POST
+POST http://localhost:4004/odata/v4/CatalogService/POs
+Content-Type: application/json
+ 
+{
+  "NODE_KEY":"dhanush",
+  "PO_ID": "1234",
+  "LIFECYCLE_STATUS": "A",
+  "OVERALL_STATUS": "A"
+}
+
+###Get the service document - v2
+http://localhost:4004/v2/odata/v4/CatalogService
+ 
+###Get service metadata document - v2
+http://localhost:4004/v2/odata/v4/CatalogService/$metadata
+ 
+###Get all Employee Data - v2
+http://localhost:4004/v2/odata/v4/CatalogService/EmployeeSet
