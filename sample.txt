@@ -1,2 +1,6 @@
 updated
+<<<<<<< HEAD
 bas updated
+=======
+second updated
+>>>>>>> bd5d38679b045ee120d57fd461d5c3f27fcf4864
