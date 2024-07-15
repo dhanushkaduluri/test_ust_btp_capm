@@ -5,49 +5,12 @@ module.exports = cds.service.impl( async function(){
 
     this.before('UPDATE', EmployeeSet, async(req) => {
         
-        // const previousLanguage = EmployeeSet.elements.language;
-        // EmployeeSet.elements.language['@readonly'] = true;
-        // delete EmployeeSet.elements.language['@readonly'];
-        // Update language with @readonly
-        // EmployeeSet.elements.language = String {
-        //     '@readonly': true,
-        //     type: 'cds.String',
-        //     length: 1,
-        //     '@Core.Computed': true
-        //   };
-
-        // console.log(EmployeeSet);
-        
-        // const annotations = await req.annotations;
-        // console.log(annotations); // Log or process annotations
         var salary = parseInt(req.data.salaryAmount);
         if(salary >= 1000000){
             req.error(500,"Ola! sorry no one can get this salary in my org");
         }
     });
 
-    // this.before('READ', POs, async(req) => {
-    //     POs.elements.OVERALL_STATUS['@UI.Hidden']=true;
-    //     POs.elements.OverallStatus['@UI.Hidden']=true;
-    //     console.log("Before Update");
-    //     console.log(POs);
-    //     return POs;
-    // });
-
-
-    // this.after('UPDATE', POs, async(req) => {
-    //     console.log("After Update");
-    //     console.log(POs);
-    // });
-    // this.before('UPDATE', POs, async(req) => {
-    //     POs.elements.OVERALL_STATUS['@readonly']=true;
-    //     console.log(POs.elements.OVERALL_STATUS);
-    // });
-
-    // this.after('CREATE', POs, async(req) => {
-    //     POs.elements.OVERALL_STATUS['@readonly']=false;
-    //     console.log(POs.elements.OVERALL_STATUS);
-    // });
 
     this.after('READ', EmployeeSet, (req)=>{
         req.push ({"ID" : 'NULL'});
