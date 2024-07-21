@@ -7,8 +7,8 @@ service CatalogService @(path: 'CatalogService', requires: 'authenticated-user')
     entity ProductSet as projection on master.product;
     entity BusinessPartnerSet as projection on master.businesspartner;
     entity BusinessAddressSet as projection on master.address;
-   // @readonly
-    entity EmployeeSet @(restrict: [
+
+    entity EmployeeSet  @insertonly @(odata.draft.enabled: true) @(restrict: [
                         { grant: ['READ'], to: 'Viewer', where: 'bankName = $user.BankName' },
                         { grant: ['WRITE'], to: 'Admin' }
                         ]) as projection on master.employees;

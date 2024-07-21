@@ -53,8 +53,13 @@ context master {
     }
  
     entity employees: cuid {
-        nameFirst: String(40);
-        nameMiddle: String(40);
+        @Consumption.valueHelpDefinition : [
+            {entity:{ element : 'nameFirst',
+                        name : 'nameFirst'
+            }}
+        ]
+        nameFirst: String(40) ;
+        nameMiddle: String(40) ;
         nameLast: String(40);
         nameInitials: String(40);
         sex: common.Gender;
